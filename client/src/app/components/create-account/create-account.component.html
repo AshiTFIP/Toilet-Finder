@@ -1,0 +1,115 @@
+<head>
+    <style>
+      body {
+        margin-left: 10px;
+        margin-right: 10px; 
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand navbar-light bg-white navbar-bordered">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img src="/assets/toilet.png" alt="" width="30" height="24" [routerLink]="['/']">
+        </a>
+        <span class="navbar-brand mb-0 h1" [routerLink]="['/']">TOILET FINDER</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/login']">Back to Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h1>Create New Account</h1>
+   <form [formGroup]="form" (ngSubmit)="process()" class="needs-validation" novalidate>
+    <table>
+        <tr>
+            <td>User ID: </td>
+            <td>
+                <input type="text" size="30" formControlName="userId" class="form-control" id="userId">
+                <div *ngIf="form.get('userId')?.invalid && (form.get('userId')?.dirty || form.get('userId')?.touched)" class="invalid-feedback d-block">
+                    Please provide a user ID.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Password: </td>
+            <td>
+                <input type="password" size="30" formControlName="pw" class="form-control" id="pw">
+                <div *ngIf="form.get('pw')?.invalid && (form.get('pw')?.dirty || form.get('pw')?.touched)" class="invalid-feedback d-block">
+                    Please provide a password.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Confirm Password: </td>
+            <td>
+                <input type="password" size="30" formControlName="confirmPw" class="form-control" id="confirmPw">
+                <div *ngIf="form.get('confirmPw')?.invalid && (form.get('confirmPw')?.dirty || form.get('confirmPw')?.touched)" class="invalid-feedback d-block">
+                    Please confirm your password.
+                </div>
+                <div *ngIf="form.errors?.['notSame'] && (form.get('pw')?.touched || form.get('confirmPw')?.touched)" class="invalid-feedback d-block">
+                    Passwords do not match, please try again.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td>
+                <input type="text" size="30" formControlName="email" class="form-control" id="email">
+                <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)" class="invalid-feedback d-block">
+                    Please provide a valid email.
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="button" (click)="verifyDetails()" class="btn btn-primary">Verify Details</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <p></p>
+            <p *ngIf="duplicationCheck" class="alert" [ngClass]="{'alert-success': duplicationCheck === 'User ID available and Email available', 'alert-danger': duplicationCheck!== 'User ID available and Email available'}">{{ duplicationCheck }}</p>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="button" (click)="sendCode()" class="btn btn-primary">Send Email Verification Code</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <p></p>
+            <p *ngIf="codeSendResult" class="alert" [ngClass]="{'alert-success': codeSendResult === 'Code sent successfully!', 'alert-danger': codeSendResult!== 'Code sent successfully!'}">{{ codeSendResult }}</p>
+        </tr>
+        <tr>
+            <td>Verification Code: </td>
+            <td>
+                <input type="text" size="30" class="form-control" formControlName="code">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Create</button>
+            </td>
+        </tr>
+    </table>
+    <div *ngIf="form.get('code')?.touched && form.get('code')?.errors?.['matchSystemValue']">
+        <div class="alert alert-danger">
+            {{ form.get('code')?.errors?.['matchSystemValue'].message }}
+        </div>
+    </div>
+</form>
+
+<p *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Account created successfully', 'alert-danger': message !== 'Account created successfully'}">{{ message }}</p>
+</div>
+

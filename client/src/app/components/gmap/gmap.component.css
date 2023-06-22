@@ -1,0 +1,57 @@
+  #map {
+    height: 95%;
+  }
+
+html,
+  body {
+    height: 95%;
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .h1{
+    margin: 0%;
+  }
+
+  .joke-box {
+    position: fixed;
+    top: 0; 
+    right: 20px;
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: auto
+
+  }
+
+  .search-box {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+}
+
+.close-button {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px 5px;
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+  .navbar-bordered {
+    border: 1px solid black;
+  }
+
+  .navbar-brand{
+    cursor: pointer;
+  }
+

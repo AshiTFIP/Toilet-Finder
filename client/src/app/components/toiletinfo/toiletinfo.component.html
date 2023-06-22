@@ -1,0 +1,64 @@
+<head>
+  <style>
+    body {
+      margin-left: 10px;
+      margin-right: 10px; 
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand navbar-light bg-white navbar-bordered">
+    <div class="container-fluid">
+      <a class="navbar-brand">
+        <img src="/assets/toilet.png" alt="" width="30" height="24" [routerLink]="['/']">
+      </a>
+      <span class="navbar-brand mb-0 h1" [routerLink]="['/']">TOILET FINDER</span>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/addcomments/'+location]">Add New Comment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/']">Back To Map</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+      {{ errorMessage }}
+    </div>
+
+    <div *ngIf="toiletInfo">
+      <h1 class="mb-3">{{ toiletInfo.location }}</h1>
+      <p><strong>Area:</strong> {{ toiletInfo.area }}</p>
+      <p><strong>Directions:</strong> {{ toiletInfo.directions }}</p>
+      <p>
+        <strong>Verification status: </strong>
+        <span [ngStyle]="{'color': toiletInfo.verification == 'Verified' ? 'blue' : 'orange'}">{{ toiletInfo.verification }}</span>
+      </p>
+
+      <h2 class="mt-3">Comments:</h2>
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>Rating</th>
+            <th>Comment</th>
+            <th>Submitted By</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let comment of toiletInfo.comments">
+            <td>{{ comment.rating }}</td>
+            <td>{{ comment.comments }}</td>
+            <td>{{ comment['submitted by'] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

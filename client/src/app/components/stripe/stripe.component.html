@@ -1,0 +1,49 @@
+<head>
+  <style>
+    body {
+      margin-left: 10px;
+      margin-right: 10px; 
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-white navbar-bordered">
+        <div class="container-fluid">
+          <a class="navbar-brand">
+            <img src="/assets/toilet.png" alt="" width="30" height="24" [routerLink]="['/']">
+          </a>
+          <span class="navbar-brand mb-0 h1" [routerLink]="['/']">TOILET FINDER</span>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/']">No thanks!</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+      <div class="container">
+        <h1 class="mb-3">Buy me a coffee :)</h1>
+      
+    <div class="row">
+       <div class="col-md-6">
+        <label for="card-element">Credit or Debit Card:</label>
+        <div id="card-element" class="form-control mb-3"></div>
+        <button id="checkout-button" (click)="checkout()" class="btn btn-primary mb-3">Donate SGD 5.00</button>
+        <p *ngIf="paymentError" class="alert" [ngClass]="{'alert-success': paymentError === 'Payment succeeded! Thank you!', 'alert-danger': paymentError !== 'Payment succeeded! Thank you!'}">{{ paymentError }}</p>
+      </div>
+      
+          <div class="col-md-6">
+            <img src="/assets/coffee.png" alt="Coffee Image" class="img-fluid mb-3">
+          </div>
+        </div>
+      </div>
+
+      
+      
+      
+          

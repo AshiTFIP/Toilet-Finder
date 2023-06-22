@@ -1,0 +1,36 @@
+#card-element {
+    height: 38px;
+    padding: 10px 12px;
+    color: #32325d;
+    background-color: white;
+    border: 1px solid transparent;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+  }
+  
+  #card-element:focus {
+    outline: none;
+    border-color: #aaa;
+    box-shadow: 0 1px 3px 0 #cfd7df;
+  }
+  
+  #checkout-button {
+    background: #6772e5;
+    color: #fff;
+    width: 100%;
+  }
+  
+  #checkout-button:hover {
+    background: #5469d4;
+  }
+
+  .container {
+    margin-top: 40px;
+  }
+  .navbar-bordered {
+    border: 1px solid black;
+  }
+
+  .navbar-brand{
+    cursor: pointer;
+  }

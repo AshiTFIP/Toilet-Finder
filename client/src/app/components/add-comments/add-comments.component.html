@@ -1,0 +1,81 @@
+<head>
+  <style>
+    body {
+      margin-left: 10px;
+      margin-right: 10px; 
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-white navbar-bordered">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img src="/assets/toilet.png" alt="" width="30" height="24" [routerLink]="['/']" >
+        </a>
+        <span class="navbar-brand mb-0 h1" [routerLink]="['/']">TOILET FINDER</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               <li class="nav-item">
+                <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/toiletinfo/'+location]">Back To Toilet Info</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/']">Back To Map</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/donation']">Finish</a>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+<div class="container">
+<h1>Add Comments</h1>
+<form [formGroup]="form" (ngSubmit)="process()" class="needs-validation" novalidate>
+  <table>
+    <tr>
+      <td>Location: </td>
+      <td>
+        <input type="text" size="30" formControlName="location" class="form-control" id="location" readonly="true">
+      </td>
+    </tr>
+    <tr>
+      <td>Rating: </td>
+      <td>
+        <input type="number" min="0" max="5" class="form-control" id="rating" formControlName="rating">
+        <div *ngIf="form.get('rating')?.invalid && (form.get('rating')?.dirty || form.get('rating')?.touched)" class="invalid-feedback d-block">
+          Please input a whole number between 0 and 5.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Comments: </td>
+      <td>
+        <input type="text" size="30" class="form-control" id="comments" formControlName="comments">
+        <div *ngIf="form.get('comments')?.invalid && (form.get('comments')?.dirty || form.get('comments')?.touched)" class="invalid-feedback d-block">
+          Please provide a comment.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>Submitted By: </td>
+      <td>
+        <input type="text" size="30" class="form-control" id="submittedby" formControlName="submittedby">
+        <div *ngIf="form.get('submittedby')?.invalid && (form.get('submittedby')?.dirty || form.get('submittedby')?.touched)" class="invalid-feedback d-block">
+          Please provide a submitter.
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+
+<p *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Comment added successfully', 'alert-danger': message !== 'Comment added successfully'}">{{ message }}</p>

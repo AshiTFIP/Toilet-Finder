@@ -1,0 +1,94 @@
+<html>
+<head>
+  <style>
+    body {
+      margin-left: 10px;
+      margin-right: 10px; 
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-light bg-white navbar-bordered">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img src="/assets/toilet.png" alt="" width="30" height="24" [routerLink]="['/']">
+        </a>
+        <span class="navbar-brand mb-0 h1" [routerLink]="['/']">TOILET FINDER</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/userhome/'+userId]">Home</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <h1>Add Toilet</h1>
+      <form [formGroup]="form" (ngSubmit)="process()" class="needs-validation" novalidate>
+        <table>
+            <tr>
+                <td>Area: </td>
+                <td>
+                  <input type="text" size="30" formControlName="area" class="form-control" id="area">
+                  <div *ngIf="form.get('area')?.invalid && (form.get('area')?.dirty || form.get('area')?.touched)" class="invalid-feedback d-block">
+                    Please provide an area.
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Location: </td>
+                <td>
+                  <input type="text" size="30" formControlName="location" class="form-control" id="location">
+                  <span class="instruction-text"> Please be as specific as possible, no duplicate locations are allowed.<br>Special characters allowed are :$^&*()</span>
+                  <div *ngIf="form.get('location')?.invalid && (form.get('location')?.dirty || form.get('location')?.touched)" class="invalid-feedback d-block">
+                    Please provide a location. Only :$^&*() are allowed as special characters.
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Directions: </td>
+                <td>
+                  <input type="text" size="30" formControlName="directions" class="form-control" id="directions">
+                  <div *ngIf="form.get('directions')?.invalid && (form.get('directions')?.dirty || form.get('directions')?.touched)" class="invalid-feedback d-block">
+                    Please provide directions.
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Submitted By: </td>
+                <td>
+                  <input type="text" size="30" formControlName="submittedby" class="form-control" id="submittedby" readonly="true">
+                </td>
+            </tr>
+            <tr>
+                <td>Coordinates: </td>
+                <td>
+                  <button type="button" (click)="openSelectCoordinatesDialog()" class="btn btn-secondary">Select Coordinates</button>
+                  <input type="text" size="30" formControlName="coordinates" class="form-control" id="coordinates">
+                  <div *ngIf="form.get('coordinates')?.invalid && (form.get('coordinates')?.dirty || form.get('coordinates')?.touched)" class="invalid-feedback d-block">
+                    Please select coordinates.
+                  </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Verification: </td>
+                <td>
+                  <input type="text" size="30" formControlName="verification" class="form-control" id="verification" readonly="true">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                  <button type="submit" [disabled]="form.invalid" class="btn btn-primary" >Submit</button>
+                </td>
+              </tr>
+        </table>
+      </form>
+      <p *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Toilet added successfully', 'alert-danger': message !== 'Toilet added successfully'}">{{ message }}</p>
+    </div>
+  </body>
+  
