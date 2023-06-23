@@ -33,8 +33,9 @@
             <td>User ID: </td>
             <td>
                 <input type="text" size="30" formControlName="userId" class="form-control" id="userId">
+                <span class="instruction-text">Special characters allowed are :$^&*()</span>
                 <div *ngIf="form.get('userId')?.invalid && (form.get('userId')?.dirty || form.get('userId')?.touched)" class="invalid-feedback d-block">
-                    Please provide a user ID.
+                    Please provide a user ID. Special characters allowed are :$^&*().
                 </div>
             </td>
         </tr>

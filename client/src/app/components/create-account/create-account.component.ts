@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/models';
 import { LoginService } from 'src/app/services/login.service';
-import { matchSystemValueValidator } from 'src/app/validators/verificationCode.validator';
 
 @Component({
   selector: 'app-create-account',
@@ -22,11 +21,11 @@ export class CreateAccountComponent {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      userId: this.fb.control<string>('',[Validators.required]),
+      userId: this.fb.control<string>('',[Validators.required, this.userIdValidator()]),
       pw: this.fb.control<string>('', [Validators.required]),
       confirmPw: this.fb.control<string>('', [Validators.required]),
       email: this.fb.control<string>('', [Validators.required, Validators.email]),
-      code: this.fb.control<string>('', [Validators.required, matchSystemValueValidator(this.loginSvc)])
+      code: this.fb.control<string>('', [Validators.required, this.matchSystemValueValidator(this.loginSvc)])
     });
     this.form.setValidators(this.checkPasswords);
   }
@@ -84,6 +83,29 @@ export class CreateAccountComponent {
     .catch((error: any) => {
       console.error(error);
     })
+  }
+
+  matchSystemValueValidator(loginService: LoginService): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const codeValue = control.value;
+      const matchingValue = loginService.getVerificationCode();
+      console.log(matchingValue)
+      const isMatch = codeValue === matchingValue;
+  
+      if (!isMatch) {
+        return { matchSystemValue: { message: 'Verification code is not correct.' } };
+      }
+  
+      return null; 
+      
+    };
+  }
+  
+  userIdValidator(): ValidatorFn {
+    return (control: AbstractControl): {[key: string]: any} | null => {
+      const forbidden = !/^[a-zA-Z0-9 :$^&*()]+$/.test(control.value);
+      return forbidden ? {'forbiddenCharacters': {value: control.value}} : null;
+    };
   }
 
 }
