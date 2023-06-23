@@ -95,6 +95,9 @@
             <td>Verification Code: </td>
             <td>
                 <input type="text" size="30" class="form-control" formControlName="code">
+                <div *ngIf="form.get('code')?.touched && form.get('code')?.errors?.['matchSystemValue']" class="invalid-feedback d-block">
+                    {{ form.get('code')?.errors?.['matchSystemValue'].message }}
+                </div>
             </td>
         </tr>
         <tr>
@@ -104,11 +107,11 @@
             </td>
         </tr>
     </table>
-    <div *ngIf="form.get('code')?.touched && form.get('code')?.errors?.['matchSystemValue']">
+    <!-- <div *ngIf="form.get('code')?.touched && form.get('code')?.errors?.['matchSystemValue']">
         <div class="alert alert-danger">
             {{ form.get('code')?.errors?.['matchSystemValue'].message }}
         </div>
-    </div>
+    </div> -->
 </form>
 
 <p *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Account created successfully', 'alert-danger': message !== 'Account created successfully'}">{{ message }}</p>

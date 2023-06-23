@@ -93,7 +93,7 @@ export class CreateAccountComponent {
       const isMatch = codeValue === matchingValue;
   
       if (!isMatch) {
-        return { matchSystemValue: { message: 'Verification code is not correct.' } };
+        return { matchSystemValue: { message: 'Verification code is incorrect.' } };
       }
   
       return null; 
