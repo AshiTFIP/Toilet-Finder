@@ -107,11 +107,6 @@
             </td>
         </tr>
     </table>
-    <!-- <div *ngIf="form.get('code')?.touched && form.get('code')?.errors?.['matchSystemValue']">
-        <div class="alert alert-danger">
-            {{ form.get('code')?.errors?.['matchSystemValue'].message }}
-        </div>
-    </div> -->
 </form>
 
 <p *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Account created successfully', 'alert-danger': message !== 'Account created successfully'}">{{ message }}</p>
