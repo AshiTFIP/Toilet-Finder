@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 import { firstValueFrom } from 'rxjs';
 
-const URL = "http://localhost:8080"
+//const URL = "http://localhost:8080"
 
 @Injectable()
 export class KeyRetrievalService{
@@ -11,13 +11,15 @@ export class KeyRetrievalService{
 
     getStripePublishableKey(): Promise<any> {
         return firstValueFrom(
-            this.http.get<string>(URL+'/getstripepublishablekey')
+            //this.http.get<string>(URL+'/getstripepublishablekey')
+            this.http.get<string>('/getstripepublishablekey')
         )
     }
 
     getGoogleMapsAPIKey(): Promise<any> {
         return firstValueFrom(
-            this.http.get<string>(URL+'/getgooglemapsapikey')
+            //this.http.get<string>(URL+'/getgooglemapsapikey')
+            this.http.get<string>('/getgooglemapsapikey')
         )
     }
 

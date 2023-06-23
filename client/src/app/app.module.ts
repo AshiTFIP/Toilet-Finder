@@ -22,7 +22,6 @@ import { StripeComponent } from './components/stripe/stripe.component';
 import { EditToiletComponent } from './components/edit-toilet/edit-toilet.component';
 import { KeyRetrievalService } from './services/keyRetrieval.service';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,7 +43,7 @@ import { KeyRetrievalService } from './services/keyRetrieval.service';
     HttpClientModule,
     NgxStripeModule.forRoot('pk_test_51NFYpNIjvelEZeBSz87nn8eJu9wX2EVPhyexFHtPuXp5IGvX4pbsICBy3TVxCaPZjoneHBRebEv5x8JjKpvUI1IQ00NKKUlfuC'),
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [LoginService, ToiletService, MapService, KeyRetrievalService],
   bootstrap: [AppComponent],

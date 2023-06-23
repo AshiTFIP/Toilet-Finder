@@ -4,7 +4,7 @@ import { Account, Login } from "../models"
 import { firstValueFrom } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 
-const URL = "http://localhost:8080"
+//const URL = "http://localhost:8080"
 
 @Injectable()
 export class LoginService{
@@ -19,7 +19,8 @@ export class LoginService{
         .set('Content-Type', 'application/x-www-form-urlencoded')
 
         return firstValueFrom(
-            this.http.post<string>(URL+'/login', form.toString(), { headers })
+            //this.http.post<string>(URL+'/login', form.toString(), { headers })
+            this.http.post<string>('/login', form.toString(), { headers })
         )
     }
 
@@ -29,7 +30,8 @@ export class LoginService{
         .set('Content-Type', 'application/x-www-form-urlencoded')
 
         return firstValueFrom(
-            this.http.post<string>(URL+'/verifydetails', form.toString(), { headers })
+            //this.http.post<string>(URL+'/verifydetails', form.toString(), { headers })
+            this.http.post<string>('/verifydetails', form.toString(), { headers })
         )
     }
 
@@ -39,7 +41,8 @@ export class LoginService{
         .set('Content-Type', 'application/x-www-form-urlencoded')
 
         return firstValueFrom(
-            this.http.post<string>(URL+'/createaccount', form.toString(), { headers })
+            //this.http.post<string>(URL+'/createaccount', form.toString(), { headers })
+            this.http.post<string>('/createaccount', form.toString(), { headers })
         )
     }
 
@@ -53,7 +56,8 @@ export class LoginService{
         .set('Content-Type', 'application/x-www-form-urlencoded')
 
         return firstValueFrom(
-            this.http.post<string>(URL+'/sendCode', form.toString(), { headers })
+            //this.http.post<string>(URL+'/sendCode', form.toString(), { headers })
+            this.http.post<string>('/sendCode', form.toString(), { headers })
         )
     }
     

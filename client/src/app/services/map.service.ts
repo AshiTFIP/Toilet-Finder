@@ -15,7 +15,6 @@ export class MapService {
 
   constructor(private tltSvc: ToiletService, private router:Router, private keyRtvlSvc: KeyRetrievalService) {
     this.retrieveKey()
-    //this.loadGoogleMapsApi();
   }
 
   async retrieveKey(){
