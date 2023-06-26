@@ -8,8 +8,6 @@ interface PaymentIntentResponse {
   clientSecret: string;
 }
 
-const URL = "http://localhost:8080";
-
 @Component({
   selector: 'app-stripe',
   templateUrl: './stripe.component.html',
@@ -50,7 +48,7 @@ export class StripeComponent implements OnInit {
     }
 
   checkout() {
-    this.http.post<PaymentIntentResponse>(URL + '/createpaymentintent', {})
+    this.http.post<PaymentIntentResponse>('/createpaymentintent', {})
       .subscribe({
         next: (response) => this.confirmPayment(response.clientSecret),
         error: (err) => this.paymentError = "Payment Intent failed to be created",

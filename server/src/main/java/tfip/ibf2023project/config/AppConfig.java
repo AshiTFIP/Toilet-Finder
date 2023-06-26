@@ -3,20 +3,32 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.MongoTemplate;
+
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
+import jakarta.annotation.PostConstruct;
+
 @Configuration
 public class AppConfig {
-    
 
-    @Value("${mongo.url}")
+    @Value("${spring.data.mongodb.url}")
     private String mongoUrl;
 
+    private MongoClient client;
+
+    @PostConstruct
+    public void init() {
+        this.client = MongoClients.create(mongoUrl);
+    }
+
     @Bean
-    public MongoTemplate createMongoTemplate(){
-        MongoClient client = MongoClients.create(mongoUrl);
-        MongoTemplate template = new MongoTemplate(client, "Project");
-        return template;
+    public MongoClient mongoClient() {
+        return this.client;
+    }
+
+    @Bean
+    public MongoTemplate mongoTemplate(MongoClient mongoClient) {
+        return new MongoTemplate(mongoClient, "Project");
     }
 }

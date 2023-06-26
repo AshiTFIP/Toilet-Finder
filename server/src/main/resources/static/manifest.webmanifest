@@ -6,8 +6,8 @@
   "display": "browser",
   "orientation": "portrait",
   "scope": "/",
-  "start_url": "https://toilet-finder-production.up.railway.app",
-  "id": "https://toilet-finder-production.up.railway.app",
+  "start_url": "https://toilet-finder.up.railway.app/",
+  "id": "/https://toilet-finder.up.railway.app/",
   "icons": [
     {
       "src": "images/icons/icon-72x72.png",

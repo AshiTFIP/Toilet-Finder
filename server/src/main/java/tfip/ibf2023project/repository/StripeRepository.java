@@ -1,5 +1,5 @@
 package tfip.ibf2023project.repository;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import com.stripe.Stripe;
@@ -10,7 +10,7 @@ import com.stripe.model.EventDataObjectDeserializer;
 import com.stripe.model.PaymentIntent;
 import com.stripe.net.Webhook;
 import com.stripe.param.PaymentIntentCreateParams;
-import org.springframework.core.env.Environment;
+//import org.springframework.core.env.Environment;
 import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpServletRequest;
 import tfip.ibf2023project.model.PaymentIntentDto;
@@ -21,12 +21,12 @@ public class StripeRepository {
    @Value("${webhook}")
     private String webhook;
 
-   @Autowired
-    private Environment env;
+   @Value("${stripeApiKey}")
+    private String stripeApiKey;
 
     @PostConstruct
     public void init() {
-      Stripe.apiKey = env.getProperty("stripeApiKey").trim();
+      Stripe.apiKey = stripeApiKey.trim();
     }
 
   public PaymentIntentDto createPaymentIntent() throws StripeException {

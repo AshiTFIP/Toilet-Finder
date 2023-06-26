@@ -82,6 +82,7 @@ export class MapService {
               position: pos,
               map: this.map,
               title: "Click to zoom",
+               zIndex: 500
             });
     
             this.marker.addListener("click", () => {
@@ -140,6 +141,7 @@ export class MapService {
           map: this.map,
           title: place.name,
           position: place.geometry.location,
+          zIndex: 500
         });
 
         if (place.geometry.viewport) {
@@ -203,7 +205,8 @@ export class MapService {
           icon: {
             url: '/assets/toilet.png',
             scaledSize: new google.maps.Size(32, 32)
-          }
+          },
+          zIndex: 1000
         });
 
         const infowindow = new google.maps.InfoWindow({
