@@ -9,6 +9,7 @@ import { ToiletinfoComponent } from './components/toiletinfo/toiletinfo.componen
 import { UserhomeComponent } from './components/userhome/userhome.component';
 import { StripeComponent } from './components/stripe/stripe.component';
 import { EditToiletComponent } from './components/edit-toilet/edit-toilet.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {path:"", component: GmapComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path:"donation", component: StripeComponent},
   {path:"toiletinfo/:location", component: ToiletinfoComponent},
   {path:"edittoilet/:userId/:location", component: EditToiletComponent},
+  {path:"admin", component: AdminComponent},
   {path:"**", redirectTo: "/", pathMatch: 'full'}
 ];
 

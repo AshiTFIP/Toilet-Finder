@@ -21,6 +21,7 @@ import { UserhomeComponent } from './components/userhome/userhome.component';
 import { StripeComponent } from './components/stripe/stripe.component';
 import { EditToiletComponent } from './components/edit-toilet/edit-toilet.component';
 import { KeyRetrievalService } from './services/keyRetrieval.service';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { KeyRetrievalService } from './services/keyRetrieval.service';
     GmapComponent,
     UserhomeComponent,
     SelectCoordinatesComponent,
-    EditToiletComponent
+    EditToiletComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

@@ -78,4 +78,26 @@ export class ToiletService{
             this.http.get<string>('/getjoke')
         )
     }
+
+    
+    verifyToilet(location:string): Promise<any>{
+        return firstValueFrom(
+            //this.http.delete<string>(URL+'/deletetoilet/'+location)
+            this.http.get<string>('/verifytoilet/'+location)
+        )
+    }
+
+    getUnverifiedToilets():Promise<any>{
+        return firstValueFrom(
+            //this.http.get<string>(URL+'/gettoiletsbyuserid', { params })
+            this.http.get<string>('/getunverifiedtoilets', )
+        )
+    }
+
+    getVerifiedToilets():Promise<any>{
+        return firstValueFrom(
+            //this.http.get<string>(URL+'/gettoiletsbyuserid', { params })
+            this.http.get<string>('/getverifiedtoilets')
+        )
+    }
 }

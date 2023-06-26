@@ -179,5 +179,65 @@ public class ToiletRepository {
         JsonObject toReturn = Json.createObjectBuilder().add("result", result).build();
         return toReturn;
     }
+
+    public JsonObject verifyToilet(String location){
+        Query query = new Query(Criteria.where("location").is(location));
+        String toReturn = "";
+        Document toiletsWithLocation = template.findOne(query, Document.class, "toilets");
+        if(toiletsWithLocation == null){
+            toReturn = "No toilet exists at this location";
+        }
+        else{
+            new Update();
+            Update verifyToilet = Update.update("verification", "Verified");
+            UpdateResult result = template.updateFirst(query, verifyToilet, Document.class, TOILETS);
+            long resultCount = result.getModifiedCount();
+            if(resultCount == 0){
+                toReturn =  "Unable to verify toilet. Please try again later.";
+            }
+            else{ 
+                toReturn = "Verified successfully";
+            }
+        }
+
+        JsonObject verifyResult = Json.createObjectBuilder().add("result", toReturn).build();
+        return verifyResult;
+    }
+
+    public JsonObject getUnverifiedToilets(){
+        Query query = new Query(Criteria.where("verification").is("Unverified"));
+        query.fields().exclude("_id");
+        List<Document> unverifiedToilets = template.find(query, Document.class, TOILETS);
+        if(unverifiedToilets.isEmpty()){
+            JsonObject noToilets = Json.createObjectBuilder().add("Result", "No unverified toilets").build();
+            return noToilets;
+        }
+        JsonArrayBuilder jab = Json.createArrayBuilder();
+        for (Document document : unverifiedToilets) {
+            JsonReader jsonReader = Json.createReader(new StringReader(document.toJson()));
+            JsonObject obj = jsonReader.readObject();
+            jab.add(obj);
+        }
+        JsonObject unvfiedToilets = Json.createObjectBuilder().add("toilets", jab.build()).build();
+        return unvfiedToilets;
+    } 
+
+    public JsonObject getVerifiedToilets(){
+        Query query = new Query(Criteria.where("verification").is("Verified"));
+        query.fields().exclude("_id");
+        List<Document> verifiedToilets = template.find(query, Document.class, TOILETS);
+        if(verifiedToilets.isEmpty()){
+            JsonObject noToilets = Json.createObjectBuilder().add("Result", "No verified toilets").build();
+            return noToilets;
+        }
+        JsonArrayBuilder jab = Json.createArrayBuilder();
+        for (Document document : verifiedToilets) {
+            JsonReader jsonReader = Json.createReader(new StringReader(document.toJson()));
+            JsonObject obj = jsonReader.readObject();
+            jab.add(obj);
+        }
+        JsonObject vfiedToilets = Json.createObjectBuilder().add("toilets", jab.build()).build();
+        return vfiedToilets;
+    } 
  
 }

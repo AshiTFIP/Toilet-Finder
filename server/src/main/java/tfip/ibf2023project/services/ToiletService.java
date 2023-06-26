@@ -28,20 +28,31 @@ public class ToiletService {
         return tltRepo.getToiletLocations();
     }
 
-     public JsonObject getToiletLocationAndAvgRating(String coords){
+    public JsonObject getToiletLocationAndAvgRating(String coords){
         return tltRepo.getToiletLocationAndAvgRating(coords);
-     }
+    }
 
-     public JsonObject getToiletInfo(String location){
+    public JsonObject getToiletInfo(String location){
         return tltRepo.getToiletInfo(location);
-     }
+    }
 
-     public JsonObject getToiletsByUserId(String userId){
+    public JsonObject getToiletsByUserId(String userId){
         return tltRepo.getToiletsByUserId(userId);
-     }
+    }
 
-     public JsonObject deleteToilet(String location){
+    public JsonObject deleteToilet(String location){
         return tltRepo.deleteToilet(location);
-     }
-    
+    }
+
+    public JsonObject verifyToilet(String location){
+        return tltRepo.verifyToilet(location);
+    }
+
+    public JsonObject getUnverifiedToilets(){
+        return tltRepo.getUnverifiedToilets();
+    }
+
+    public JsonObject getVerifiedToilets(){
+        return tltRepo.getVerifiedToilets();
+    }
 }

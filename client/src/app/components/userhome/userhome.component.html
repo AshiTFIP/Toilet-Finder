@@ -31,13 +31,15 @@
   <div class="container">
     <h2>Welcome {{userId}}</h2>
 
+    <button *ngIf="userId === 'admin'" [routerLink]="['/admin']" class="btn btn-outline-dark mb-3">Toilet Verification</button>
+
     <table class="table table-bordered">
       <thead class="thead-light">
         <tr>
           <th>Area</th>
           <th>Location</th>
           <th>Directions</th>
-          <th>Verification</th>
+          <th>Verification Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -54,6 +56,7 @@
         </tr>
       </tbody>
     </table>
+    <p *ngIf="toilets.length === 0" class="alert alert-primary" role="alert">No toilets added</p>
     <p *ngIf="message" class="alert" [ngClass]="{'alert-success': message === 'Toilet deleted successfully', 'alert-danger': message !== 'Toilet deleted successfully'}">{{ message }}</p>
   </div>
 </body>

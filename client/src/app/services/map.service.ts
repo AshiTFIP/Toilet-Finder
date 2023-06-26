@@ -275,5 +275,6 @@ export class MapService {
       return 'Invalid document structure';
     }
   }
+
 }
 

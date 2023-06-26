@@ -1,0 +1,91 @@
+<head>
+    <style>
+      body {
+        margin-left: 10px;
+        margin-right: 10px; 
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand navbar-light bg-white navbar-bordered">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img src="/assets/toilet.png" alt="" width="30" height="24" [routerLink]="['/']">
+        </a>
+        <span class="navbar-brand mb-0 h1" [routerLink]="['/']">TOILET FINDER</span>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+                <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/userhome/admin']">Back to Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active font-weight-bold text-decoration-underline" aria-current="page" [routerLink]="['/donation']">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <h2>Welcome Admin</h2>
+
+        <p *ngIf="message" class="alert" 
+        [ngClass]="{
+        'alert-success': message === 'Toilet verified successfully' || message === 'Toilet deleted successfully', 
+        'alert-danger': message !== 'Toilet verified successfully' && message !== 'Toilet deleted successfully'
+          }">{{ message }}</p>
+
+        <h3>Unverified Toilets</h3>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>Area</th>
+              <th>Location</th>
+              <th>Directions</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let toilet of unverifiedToilets">
+              <td>{{ toilet.area }}</td>
+              <td>{{ toilet.location }}</td>
+              <td>{{ toilet.directions }}</td>
+              <td>
+                <button (click)="verifyToilet(toilet.location)" class="btn btn-secondary btn-sm">Verify</button>
+                <button (click)="deleteToilet(toilet.location)" class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p *ngIf="unverifiedToilets.length === 0" class="alert alert-primary" role="alert">No unverified toilets</p>
+
+        <h3>Verified Toilets</h3>
+        <table class="table table-bordered">
+          <thead class="thead-light">
+            <tr>
+              <th>Area</th>
+              <th>Location</th>
+              <th>Directions</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let toilet of verifiedToilets">
+              <td>{{ toilet.area }}</td>
+              <td>{{ toilet.location }}</td>
+              <td>{{ toilet.directions }}</td>
+              <td>
+                <button (click)="deleteToilet(toilet.location)" class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="verifiedToilets.length === 0" class="alert alert-primary" role="alert">No verified toilets</p>
+
+      </div>
+    <br>
+    </body>
+    

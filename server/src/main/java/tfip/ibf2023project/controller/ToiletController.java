@@ -232,4 +232,24 @@ public class ToiletController {
 
             return ResponseEntity.ok(response.toString());
     }
+
+    @GetMapping("/verifytoilet/{location}")
+    public ResponseEntity<String> verifyToilet(@PathVariable String location){
+        JsonObject verifyResult = tltSvc.verifyToilet(location);
+        return ResponseEntity.ok(verifyResult.toString());
+    }
+
+    @GetMapping("/getunverifiedtoilets")
+    @ResponseBody
+    public ResponseEntity<String> getUnverifiedToilets(){
+        JsonObject unverifiedToilets = tltSvc.getUnverifiedToilets();
+        return ResponseEntity.ok(unverifiedToilets.toString());
+    }
+    
+    @GetMapping("/getverifiedtoilets")
+    @ResponseBody
+    public ResponseEntity<String> getVerifiedToilets(){
+        JsonObject verifiedToilets = tltSvc.getVerifiedToilets();
+        return ResponseEntity.ok(verifiedToilets.toString());
+    }
 }
