@@ -1,0 +1,1 @@
+console.info('Idle service worker')
