@@ -1,4 +1,4 @@
-import {  CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import {  CUSTOM_ELEMENTS_SCHEMA, NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -22,6 +22,7 @@ import { StripeComponent } from './components/stripe/stripe.component';
 import { EditToiletComponent } from './components/edit-toilet/edit-toilet.component';
 import { KeyRetrievalService } from './services/keyRetrieval.service';
 import { AdminComponent } from './components/admin/admin.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,12 @@ import { AdminComponent } from './components/admin/admin.component';
     NgxStripeModule.forRoot('pk_test_51NFYpNIjvelEZeBSz87nn8eJu9wX2EVPhyexFHtPuXp5IGvX4pbsICBy3TVxCaPZjoneHBRebEv5x8JjKpvUI1IQ00NKKUlfuC'),
     BrowserAnimationsModule,
     MatDialogModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000'
+    }),
   ],
   providers: [LoginService, ToiletService, MapService, KeyRetrievalService],
   bootstrap: [AppComponent],

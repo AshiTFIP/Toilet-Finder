@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ToiletService } from 'src/app/services/toilet.service';
 import { MapService } from 'src/app/services/map.service';
 import { NavigationEnd, Router } from '@angular/router';
@@ -39,9 +39,9 @@ export class GmapComponent implements OnInit {
   }
 }
 
-closeJokeBox() {
-  this.jokeBoxSeen = false;
-}
+  closeJokeBox() {
+    this.jokeBoxSeen = false;
+  }
 
 }
 
