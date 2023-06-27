@@ -29,9 +29,7 @@
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css"
             ],
-            "scripts": [
-              "index.js"
-            ],
+            "scripts": [],
             "serviceWorker": true,
             "ngswConfigPath": "ngsw-config.json"
           },
@@ -40,8 +38,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "5mb",
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",

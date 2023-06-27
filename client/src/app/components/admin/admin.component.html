@@ -37,7 +37,7 @@
         'alert-danger': message !== 'Toilet verified successfully' && message !== 'Toilet deleted successfully'
           }">{{ message }}</p>
 
-        <h3>Unverified Toilets</h3>
+        <h3 class="underline">Unverified Toilets</h3>
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>
@@ -62,7 +62,7 @@
 
         <p *ngIf="unverifiedToilets.length === 0" class="alert alert-primary" role="alert">No unverified toilets</p>
 
-        <h3>Verified Toilets</h3>
+        <h3 class="underline">Verified Toilets</h3>
         <table class="table table-bordered">
           <thead class="thead-light">
             <tr>

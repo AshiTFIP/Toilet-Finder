@@ -41,3 +41,8 @@ input.ng-touched.ng-invalid {
   .navbar-brand{
     cursor: pointer;
   }
+
+  .underline {
+    text-decoration: underline;
+    font-weight: 500;
+  }
