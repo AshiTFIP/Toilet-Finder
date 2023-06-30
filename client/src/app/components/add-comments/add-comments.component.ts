@@ -22,7 +22,7 @@ export class AddCommentsComponent implements OnInit {
     this.location = this.route.snapshot.paramMap.get('location') || 'default';
     this.form = this.fb.group({
       location: this.fb.control<string>(this.location, [Validators.required]),
-      rating: this.fb.control<number>(0, [Validators.required, Validators.pattern(/^[0-5]$/)]),
+      rating: this.fb.control<number>(0, [Validators.required, Validators.pattern(/^[1-5]$/)]),
       comments: this.fb.control<string>('', [Validators.required]),
       submittedby: this.fb.control<string>('', [Validators.required])
     })

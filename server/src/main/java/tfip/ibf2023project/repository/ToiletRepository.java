@@ -136,7 +136,6 @@ public class ToiletRepository {
             }
             double avgRating = sum / comments.size();
 
-            // Append average rating to document
             result.append("avgRating", avgRating);
         } else {
             result.append("avgRating", 0.0);

@@ -46,7 +46,7 @@
       <td>
         <input type="number" min="0" max="5" class="form-control" id="rating" formControlName="rating">
         <div *ngIf="form.get('rating')?.invalid && (form.get('rating')?.dirty || form.get('rating')?.touched)" class="invalid-feedback d-block">
-          Please input a whole number between 0 and 5.
+          Please input a whole number between 1 and 5.
         </div>
       </td>
     </tr>
